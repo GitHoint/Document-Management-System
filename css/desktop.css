@@ -1,0 +1,148 @@
+header,
+main,
+footer {
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+p,
+ul.nonDecor>li>ul>li {
+    font-size: 20px;
+}
+
+main {
+    margin-bottom: 120px;
+}
+
+main>h1 {
+    font-size: 32px;
+}
+
+.burger {
+    display: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header>.div:last-child {
+    position: static;
+}
+
+.mainNav {
+    position: static;
+    display: flex;
+    left: 0;
+    top: 0;
+    transition: none;
+}
+
+.mainNav>menu {
+    flex-direction: row;
+}
+
+.mainNav>menu li {
+    border-top: none;
+}
+
+.mainNav>menu li:last-child {
+    border: none;
+}
+
+.mainNav>menu>li>a {
+    transition: color 0.5s;
+}
+
+@media screen and (max-width: 1024px) {
+    .mainNav>menu>li>a {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 937px) {
+    .mainNav>menu>li {
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    .desktopIcon {
+        margin-left: 5px;
+    }
+}
+
+.mainNav>menu>li>a:hover {
+    color: var(--main-theme-colour);
+}
+
+.topBar {
+    padding-left: 0;
+}
+
+.mobileIcons {
+    display: none;
+}
+
+.desktopIcon {
+    display: flex;
+}
+
+#closeBtn {
+    margin-left: .5rem;
+}
+
+.searchResultsContainer {
+    left: auto;
+    margin: 0;
+}
+
+/* main content */
+.bannerImage > h1 {
+    padding: 2.5rem;
+  }
+.aboutUsSection {
+    padding-left: 1rem;
+}
+
+div.address {
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: 200px 1fr;
+}
+
+.iframeMap {
+    margin: 0;
+    width: 100%;
+    height: 300px;
+}
+section.courseDetails {
+    grid-template-columns: 1fr 1fr;
+}
+section.courseDetails  > p{
+    font-size: 26px;
+}
+.courseSummary {
+    grid-column: span 2;
+  }
+/* templates */
+
+.twoColumn {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+#contact {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    gap: 2rem;
+}
+
+.sendButton {
+    grid-column: 1 / span 2;
+    margin: 0 auto;
+    width: 500px;
+}
+th, td {
+    font-size: 20px;
+}
