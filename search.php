@@ -11,7 +11,7 @@
 
 <body>
   <?php
-  // include("includes/header.php");
+  include("includes/header.php");
   ?>
   
   <div class="page-container">
@@ -21,8 +21,6 @@
   <?php
   // include("includes/footer.php");
   ?>
-
-  <script src="js/main.js"></script>
 </body>
 
 </html>
