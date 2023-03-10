@@ -42,6 +42,71 @@ nav {
 .nav-username:hover {
     color: white;
 }
+.searchbar-container{
+    margin: auto;
+    width: 50%;
+    padding-top: 50px;
+}
+.searchbar-container > label{
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    width: auto;
+    color: grey;
+}
+.searchbar-container #user-search{
+    border: 2px solid black;
+    width: 10%;
+    margin: auto;
+    height: 32px;
+    flex: 90%;
+    font-size: 18px;
+}
+#searchbar{
+    display: flex;
+    justify-content: center;
+}
+#search-button{
+    border: 2px solid black;
+    padding: 2px;
+    border-left: 0;
+}
+#admin-panel h2{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.user-display{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 50%;
+    margin-bottom: 10px;
+    border-bottom: 1px ridge black;
+    margin-top: 5px;
+}
+.user-display p{
+    font-style: italic;
+    color: grey;
+}
+.user-display .toggle-user-btn{
+    display: block;
+    width: 15%;
+    height: auto;
+    margin: 10px;
+    font-size: 20px;
+    padding: 2px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+#deactive-user{
+    background-color: #128754;
+    color: whitesmoke;
+}
+
+
+
 .page-container {
     max-width: 1000px;
     margin: 4rem auto 0;
