@@ -1,11 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-family: 'Tilt Neon', cursive;
+}
+a { transition: color .4s; }
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
 nav {
+    background-color: #128754;
+}
+.nav-wrap {
+    max-width: 1000px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
 }
-.nav-padding {
-    padding: 5px 40px;
+.nav-list-first, .nav-list-last {
+    display: flex;
+    list-style-type: none;
+    padding: 20px 10px;
+    gap: 25px;
 }
-.page-container {
-    max-width: 1000px;
-    margin: 0 auto;
+.nav-link, .nav-username{
+    font-size: 24px;
+    color: white;
+}
+.nav-link:hover {
+    color: wheat;
+}
+.nav-username
+.nav-username:hover {
+    color: white;
 }
