@@ -20,7 +20,7 @@ $obj = $result->fetch_object();
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-    <?php echo $obj->name ?> | Cantor College
+    <?php echo $obj->name ?> | Document Management
   </title>
   <link rel="stylesheet" href="css/mobile.css" />
   <link rel="stylesheet" href="css/desktop.css" media="only screen and (min-width : 720px)" />
