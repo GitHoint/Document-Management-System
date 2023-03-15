@@ -1,3 +1,8 @@
+<?php
+    require_once("includes/config.php");
+    $queryUsers = "SELECT * FROM employee";
+    $resultUsers = $mysqli->query($queryUsers);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/desktop.css" />
     <title>Manager Users || Admin Panel</title>
+    <script src="js/jquery-3.6.4.js"></script>
+    <script src="js/admin-user-search.js"></script>
 </head>
 <body>
     <?php
@@ -28,35 +35,17 @@
             </div>
             <input type="button" value="Deavtivate" class="toggle-user-btn">
         </div>
-        <div class="user-display">
-            <div>
-                <h3>Barend Clover</h3>
-                <p>Department</p>
-            </div>
-            <input type="button" value="Deavtivate" class="toggle-user-btn">
-        </div>
-        <div class="user-display">
-            <div>
-                <h3>Angela Jones</h3>
-                <p>Department</p>
-            </div>
-            <input type="button" value="Deavtivate" class="toggle-user-btn">
-        </div>
-        <div class="user-display">
-            <div>
-                <h3>Terri Jewel</h3>
-                <p>Department</p>
-            </div>
-            <input type="button" value="Deavtivate" class="toggle-user-btn">
-        </div>
-        <div class="user-display">
-            <div>
-                <h3>Erin Allard</h3>
-                <p>Department</p>
-            </div>
-            <input type="button" value="Reactivate" class="toggle-user-btn" id="deactive-user">
-            <!--Examples for users to show format for time being--->
-        </div>
+        <?php
+        while ($obj = $resultUsers -> fetch_object()){
+            echo "<div class='user-display'>";
+            echo "<div>";
+            echo "<h3>{$obj->username}</h3>";
+            echo "<p>{$obj->department}</p>";
+            echo "</div>";
+            echo "<input type='button' value={$obj->active} class='toggle-user-btn'>";
+            echo "</div>";
+        }
+        ?>
     </div>
 </body>
 </html>
