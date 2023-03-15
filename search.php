@@ -20,7 +20,7 @@
   function echoDocumentCards(object $documents)
   {
     while ($obj = $documents->fetch_object()) {
-      echo "<a href=\"/document.php?documentId={$obj->id}\" class=\"document-card\">";
+      echo "<a href=\"document.php?documentId={$obj->id}\" class=\"document-card\">";
       echo "<span class=\"document-card-name\">{$obj->name}</span>";
       echo "<ul class=\"document-card-details\">";
       echo "<li>Type: {$obj->type}</li>";
