@@ -243,3 +243,24 @@ select {
 .register-form input[type="submit"]:hover {
     background-color: var(--default-theme-color);
 }
+/* Document Page */
+.document-container{
+    color: black;
+    padding: 15px 5px;
+}
+button {
+    padding: 6px 15px;
+    font-size: 18px;
+    border: 2px solid black;
+    color: white;
+    cursor: pointer;
+    background-color: var(--default-theme-color);
+    transition: .4s;
+}
+button:hover {
+    background-color: #15c076;
+}
+.buttons-wrap {
+    display: flex;
+    gap: 20px;
+}

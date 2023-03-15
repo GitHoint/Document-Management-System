@@ -40,7 +40,7 @@
     let navListFirst = document.querySelector(".nav-list-first");
     let navListLast = document.querySelector(".nav-list-last");
 
-    let user = "124";
+    let user = "admin";
     if (user === null) {
       addLinks([], navListFirst)
       addLinks([loginLink], navListLast)
