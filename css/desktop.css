@@ -100,7 +100,7 @@ nav {
     border: 1px solid black;
     cursor: pointer;
 }
-#deactive-user{
+.deactive-user{
     background-color: #128754;
     color: whitesmoke;
 }
