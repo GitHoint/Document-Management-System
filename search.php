@@ -20,7 +20,7 @@
   function echoDocumentCards(object $documents)
   {
     while ($obj = $documents->fetch_object()) {
-      echo "<div class=\"document-card\">";
+      echo "<a href=\"document.php?documentId={$obj->id}\" class=\"document-card\">";
       echo "<span class=\"document-card-name\">{$obj->name}</span>";
       echo "<ul class=\"document-card-details\">";
       echo "<li>Type: {$obj->type}</li>";
@@ -28,7 +28,7 @@
       echo '<li>Owner: ' . $obj->department . ', ' . $obj->owner . '</li>';
       echo "<li>Date: {$obj->uploadDate}</li>";
       echo "</ul>";
-      echo "</div>";
+      echo "</a>";
     }
   }
   ?>
