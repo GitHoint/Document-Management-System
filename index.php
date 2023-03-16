@@ -1,3 +1,6 @@
+<?php
+include("includes/config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,22 +10,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home | Document Management</title>
   <link rel="stylesheet" href="css/desktop.css" />
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
 </head>
 
 <body>
   <?php
   include("includes/header.php");
   ?>
-  
-  <div>
-    Main page
-  </div>
+  <form method="post" id="login-form">
+    <h2>Log In</h2>
+    <div class="login-tab">
+      <label for="username">Username</label>
+      <input type="text" placeholder="Enter Username" name="username" required>
+    </div>
+    <div class="login-tab">
+      <label for="password">Password</label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+    </div>
+    <button type="submit">Login</button>
+  </form>
 
-  <?php
-  // include("includes/footer.php");
-  ?>
+
+
+
 </body>
-
 </html>
