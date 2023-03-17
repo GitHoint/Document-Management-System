@@ -5,15 +5,14 @@
     { name: "Users", link: "users.php" },
     { name: "Add User", link: "addUser.php" },
   ];
-
   const loginLink = {
     name: "Login",
-    link: "login.php"
+    link: "index.php"
   }
 
   const logoutLink = {
     name: "Logout",
-    link: "login.php"
+    link: "logout.php"
   }
 
   function addLinks(links, list) {
@@ -40,25 +39,24 @@
     let navListFirst = document.querySelector(".nav-list-first");
     let navListLast = document.querySelector(".nav-list-last");
 
-    let user = "admin";
-    if (user === null) {
+    if (!loggedin) {
       addLinks([], navListFirst)
       addLinks([loginLink], navListLast)
       return;
     }
-    else if (user === "admin") {
+    else if (loggedin === "admin") {
       addLinks(linksToAdd, navListFirst);
     }
     else {
       const userLink = {
-        name: "user.name",
+        name: username,
         link: ""
       }
       addLinks(linksToAdd.slice(0, 2), navListFirst)
     }
 
     const userLink = {
-      name: "user.name",
+      name: username,
       link: "",
       isUserName: true
     }

@@ -382,3 +382,10 @@ button:hover {
     display: block;
     border-radius: 5px;
 }
+.alert {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 18px;
+    color: red;
+}
