@@ -1,10 +1,12 @@
 $(document).ready(function(){
+    
     $(".toggle-user-btn").each(function(){
-        if ($(this).attr("value") == "0"){
-            $(this).prop("value", "Activate");
-            $(this).addClass("deactive-user");
+        if ($(this).text() == "0"){
+            $(this).text("Activate");
         }
-        else{
+
+        if($(this).text() == "1"){
+            $(this).addClass("active-user");
             $(this).text("Deactivate");
         }
     })

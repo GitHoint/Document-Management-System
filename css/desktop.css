@@ -43,6 +43,60 @@ nav {
     color: white;
 }
 /*-Admin Search Page-*/
+.toggle-switch{
+    position: relative;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    width: 30px;
+    height: 17px;
+}
+.toggle-switch input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    margin: auto;
+    margin-top: 10px;
+    position: absolute;
+    border-radius: 34px;
+    width: 40px;
+    height: 22px;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+.slider:before {
+    position: absolute;
+    border-radius: 50%;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: var(--default-theme-color);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--default-theme-color);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(18px);
+    -ms-transform: translateX(18px);
+    transform: translateX(18px);
+  }  
 .searchbar-container{
     margin: auto;
     width: 50%;
@@ -67,6 +121,10 @@ nav {
     border-radius: 0;
     resize: none;
     padding: 0;
+}
+.admin-filter{
+    display: flex;
+    justify-content: space-evenly;
 }
 #searchbar{
     display: flex;
@@ -95,6 +153,11 @@ nav {
     font-style: italic;
     color: grey;
 }
+.user-display form{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 .user-display .toggle-user-btn{
     display: block;
     width: 15%;
@@ -105,12 +168,31 @@ nav {
     border: 1px solid black;
     cursor: pointer;
 }
-.deactive-user{
-    background-color: #128754;
-    color: whitesmoke;
+.active-user{
+    background-color: #f0f0f0;
+    color: black;
 }
-
-
+.active-user:hover{
+    background-color:#f7867e;
+}
+.user-display h3{
+    cursor:alias;
+}
+.user-display h3 span{
+    visibility: hidden;
+    width: auto;
+    background-color: var(--default-theme-color);
+    color: whitesmoke;
+    text-align: center;
+    padding: 5px 2px;
+    margin-left: 10px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+.user-display h3:hover span{
+    visibility: visible;
+}
 
 .page-container {
     max-width: 1000px;
