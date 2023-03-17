@@ -22,8 +22,7 @@ $obj = $result->fetch_object();
   <title>
     <?php echo $obj->name ?> | Document Management
   </title>
-  <link rel="stylesheet" href="css/mobile.css" />
-  <link rel="stylesheet" href="css/desktop.css" media="only screen and (min-width : 720px)" />
+  <link rel="stylesheet" href="css/desktop.css" />
 </head>
 
 <body>
@@ -32,6 +31,13 @@ $obj = $result->fetch_object();
   ?>
   <div class="page-container">
     <?php
+    $username = $_SESSION['username'] == $obj->owner ? "owner" :  '';
+  
+    echo "<script>";
+    echo "const userStatus = '{$username}';";
+    echo "</script>";
+
+
     echo "<div href=\"document.php?documentId={$obj->id}\" class=\"document-container\">";
     echo "<span class=\"document-card-name\">{$obj->name}</span>";
     echo "<ul class=\"document-card-details\">";
@@ -43,13 +49,11 @@ $obj = $result->fetch_object();
     echo "</div>";
     ?>
     <div class="buttons-wrap">
-      <button>Download</button>
+      <?php
+      echo "<a class=\"button\" href=\"download.php?id={$docId}\">Download</a>"
+      ?>
     </div>
   </div>
-
-  <?php
-  // include("includes/footer.php");
-  ?>
   <script src="js/document-buttons.js"></script>
 </body>
 

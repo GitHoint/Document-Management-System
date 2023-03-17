@@ -19,13 +19,13 @@
 
 <div class="container">
 <center><p>Upload Document</p></center>
-  <form action="/action_page.php">
+  <form  method="post" enctype="multipart/form-data" action="uploadDocument.php">
     <div class="row">
       <div class="col-25">
         <label for="Doc-name">Document Name</label>
       </div>
       <div class="col-75">
-        <input type="text" placeholder="Enter your document name here...">
+        <input name="document_name" type="text" placeholder="Enter your document name here...">
       </div>
     </div>
     <div class="row">
@@ -33,7 +33,7 @@
         <label for="Doc-type">Document Type</label>
       </div>
       <div class="col-75">
-        <input type="text" placeholder="Document type">
+        <input name="type" type="text" placeholder="Document type">
       </div>
     </div>
     <div class="row">
@@ -41,10 +41,10 @@
         <label for="criticality">Criticality</label>
       </div>
       <div class="col-75">
-        <select  name="criticality level">
-          <option value="doc-type-1">Document Type 1</option>
-          <option value="doc-type-2">Document Type 2</option>
-          <option value="doc-type-3">Document Type 3</option>
+        <select  name="criticality">
+          <option value="low">low</option>
+          <option value="medium">medium</option>
+          <option value="high">high</option>
         </select>
       </div>
     </div>

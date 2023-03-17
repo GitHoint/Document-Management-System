@@ -404,7 +404,7 @@ input[type=submit]:hover {
     color: black;
     padding: 15px 5px;
 }
-button {
+button, .button {
     padding: 6px 15px;
     font-size: 18px;
     border: 2px solid black;
@@ -413,7 +413,7 @@ button {
     background-color: var(--default-theme-color);
     transition: .4s;
 }
-button:hover {
+button:hover, .button:hover {
     background-color: #15c076;
 }
 .buttons-wrap {

@@ -14,6 +14,6 @@
     }
   }
 
-  addButton("admin")
+  addButton(userStatus)
 
 })();
