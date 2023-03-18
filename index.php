@@ -17,19 +17,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = trim($_POST["password"]);
 
 
-  $sql = "SELECT id, password FROM employee WHERE username = ?";
+  $sql = "SELECT id, password, 'employee' AS user_type
+  FROM employee
+  WHERE username = ?
+  UNION
+  SELECT id, password, 'admin' AS user_type
+  FROM admin
+  WHERE username = ?";
 
   if ($stmt = $mysqli->prepare($sql)) {
     $param_username = $username;
 
-    $stmt->bind_param('s', $param_username);
+    $stmt->bind_param('ss', $param_username, $param_username);
 
     if ($stmt->execute()) {
       $stmt->store_result();
 
       if ($stmt->num_rows > 0) {
 
-        $stmt->bind_result($id, $hashed_password);
+        $stmt->bind_result($id, $hashed_password, $user_type);
         if ($stmt->fetch()) {
 
           if ($password == $hashed_password) {
@@ -38,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["loggedin"] = true;
             $_SESSION["id"] = $id;
             $_SESSION["username"] = $username;
+            $_SESSION["user_type"] = $user_type;
 
             header("location: search.php");
           } else {

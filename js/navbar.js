@@ -44,7 +44,7 @@
       addLinks([loginLink], navListLast)
       return;
     }
-    else if (loggedin === "admin") {
+    else if (userType === "admin") {
       addLinks(linksToAdd, navListFirst);
     }
     else {
