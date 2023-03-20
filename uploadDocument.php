@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         // Generate a unique filename for the uploaded file
-        $new_file_name = uniqid() . "." . $file_type;
+        $new_file_name = $document_name . uniqid() . "." . $file_type;
         
         // Upload the file to the server
         move_uploaded_file($_FILES["filename"]["tmp_name"], "documents/" . $new_file_name);
