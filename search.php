@@ -20,7 +20,7 @@
 
   function formQuery($nameQuery, $types, $crit) {
     $defaultQuery = "SELECT d.*, o.username AS owner, o.department FROM document d JOIN employee o ON d.ownerId = o.id";
-    // "WHERE type IN ('Tie', 'rando') AND criticality = 'low' AND name LIKE '%doc%'";
+    
     if ($nameQuery != null || $types != null || $crit != null) {
       $defaultQuery = $defaultQuery . " WHERE ";
       $queryArray = array();
@@ -43,7 +43,6 @@
 
   $query = formQuery($searchQuery, $types, $crit);
 
-  // $defaultQuery = "SELECT d.*, o.username AS owner, o.department FROM document d JOIN employee o ON d.ownerId = o.id LIMIT 20;";
   $defaultDocuments = $mysqli->query($query);
 
   function echoDocumentCards(object $documents)

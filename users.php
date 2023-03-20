@@ -1,7 +1,8 @@
 <?php
     require_once("includes/config.php");
-    $queryUsers = "SELECT * FROM employee";
-    $resultUsers = $mysqli->query($queryUsers);
+    $queryUsers = "SELECT * FROM employee WHERE ";
+
+    $activeOnly = false;
 
     if(isset($_POST['update_data']))
     {
@@ -19,6 +20,20 @@
         $result = $mysqli->query($query);
         header("Location: users.php");
     }
+
+    $filtersArray = array();
+    // Add active only conition to the query
+        $activeOnly = $_GET['active_only'] ?? null;
+        $activeValue = $activeOnly == null ? '1' : $activeOnly;
+        $userState = "active = " . $activeValue;
+        array_push($filtersArray, $userState);
+    // Add search by username value to the query
+    if (isset($_GET['q'])) {
+        $nameQuery = $_GET['q'];
+        array_push($filtersArray, "username LIKE '%{$nameQuery}%'");
+    }
+    $queryUsers = $queryUsers . join(" AND ", $filtersArray);
+    $resultUsers = $mysqli->query($queryUsers);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +58,7 @@
             <input type="image" src="images/search-icon.png" alt="search icon" id="search-button" height=28px width=28px>
         </div>
         <label class="toggle-switch">
-            <input type="checkbox" id="ckb" checked>
+            <input type="checkbox" id="ckb">
             <span class="slider"></span>
          </label>
     </div>
