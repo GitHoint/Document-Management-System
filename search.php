@@ -14,8 +14,37 @@
   require_once("includes/config.php");
   include("includes/header.php");
 
-  $defaultQuery = "SELECT d.*, o.username AS owner, o.department FROM document d JOIN employee o ON d.ownerId = o.id LIMIT 20;";
-  $defaultDocuments = $mysqli->query($defaultQuery);
+  $searchQuery = $_GET['q'] ?? null;
+  $types = $_GET['types'] ?? null;
+  $crit = $_GET['crit'] ?? null;
+
+  function formQuery($nameQuery, $types, $crit) {
+    $defaultQuery = "SELECT d.*, o.username AS owner, o.department FROM document d JOIN employee o ON d.ownerId = o.id";
+    // "WHERE type IN ('Tie', 'rando') AND criticality = 'low' AND name LIKE '%doc%'";
+    if ($nameQuery != null || $types != null || $crit != null) {
+      $defaultQuery = $defaultQuery . " WHERE ";
+      $queryArray = array();
+      if ($nameQuery != null) {
+        $nameQ = "name LIKE '%{$nameQuery}%'";
+        array_push($queryArray, $nameQ);
+      }
+      if ($types != null) {
+        $typeQ = "type IN ({$types})";
+        array_push($queryArray, $typeQ);
+      }
+      if ($crit != null) {
+        $critQ = "criticality = '{$crit}'";
+        array_push($queryArray, $critQ);
+      }
+      $defaultQuery = $defaultQuery . join(" AND ", $queryArray);
+    }
+    return $defaultQuery;
+  }
+
+  $query = formQuery($searchQuery, $types, $crit);
+
+  // $defaultQuery = "SELECT d.*, o.username AS owner, o.department FROM document d JOIN employee o ON d.ownerId = o.id LIMIT 20;";
+  $defaultDocuments = $mysqli->query($query);
 
   function echoDocumentCards(object $documents)
   {
@@ -56,17 +85,23 @@
         <div class="search-filters-section">
           <label>Type</label>
           <ul class="type-filters">
-            <li><input type="checkbox"/><span>document type 1</span></li>
-            <li><input type="checkbox"/><span>document type 2</span></li>
-            <li><input type="checkbox"/><span>document type 3</span></li>
-            <li><input type="checkbox"/><span>document type 4</span></li>
+            <?php
+              $typesQuery = "SELECT DISTINCT type FROM document";
+              $documentTypes = $mysqli->query($typesQuery);
+              while ($type = $documentTypes->fetch_object()) {
+                echo "<li>";
+                echo "<input type=\"checkbox\" value=\"{$type->type}\"/>";
+                echo "<span>{$type->type}</span>";
+                echo "</li>";
+              }
+            ?>
           </ul>
         </div>
         <div class="search-filters-section">
           <label>Criticality</label>
           <div>
           <select id="criticality" name="criticality">
-            <option disabled selected value> -- select an option -- </option>
+            <option selected value=" "> -- select an option -- </option>
             <option value="low">low</option>
             <option value="medium">medium</option>
             <option value="high">high</option>
@@ -80,6 +115,7 @@
   <?php
   // include("includes/footer.php");
   ?>
+  <script src="js/documents-search.js"></script>
 </body>
 
 </html>

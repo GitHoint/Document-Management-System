@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2023 at 01:55 PM
+-- Generation Time: Mar 20, 2023 at 01:50 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -62,7 +62,9 @@ CREATE TABLE `document` (
 --
 
 INSERT INTO `document` (`id`, `name`, `ownerId`, `type`, `criticality`, `uploadDate`, `filePath`) VALUES
-(4, 'just a document', 1, 'rando', 'low', '2023-03-17 12:11:22', '641458ea9df09.pdf');
+(4, 'just a document', 1, 'rando', 'low', '2023-03-17 12:11:22', '641458ea9df09.pdf'),
+(6, 'second document', 2, 'transaction', 'high', '2023-03-20 10:36:39', 'second document64183737ed85a.pdf'),
+(7, 'name', 2, 'transaction', 'medium', '2023-03-20 10:46:58', 'name641839a250bbc.pdf');
 
 -- --------------------------------------------------------
 
@@ -148,7 +150,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `documentaccess`
