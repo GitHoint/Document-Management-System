@@ -43,30 +43,23 @@
             <input type="image" src="images/search-icon.png" alt="search icon" id="search-button" height=28px width=28px>
         </div>
         <label class="toggle-switch">
-            <input type="checkbox" checked>
+            <input type="checkbox" id="ckb" checked>
             <span class="slider"></span>
          </label>
     </div>
     <div id="admin-panel">
-        <h2>Head Office</h2>
-        <div class="user-display">
-            <div>
-                <h3>Mia Davies</h3>
-                <p>Department</p>
-            </div>
-            <input type="button" value="Deavtivate" class="toggle-user-btn">
-        </div>
+        <h2 id="active-title">Active Users</h2>
         <?php
         while ($obj = $resultUsers -> fetch_object()){
             echo "<div class='user-display'>";
             echo "<form action='' method='POST'>";
             echo "<input type='hidden' name='id' value='$obj->id'>";
             echo "<div>";
-            echo "<h3>{$obj->username}<span class 'email-display'>$obj->email</span></h3>";
+            echo "<h3 id='username-display'>{$obj->username}<span class 'email-display'>$obj->email</span></h3>";
             echo "<p>{$obj->department}</p>";
             echo "</div>";
             echo "<button type='submit' name='update_data' class='toggle-user-btn'>$obj->active</button>";
-            echo "<input type='hidden' name='active_state' value='$obj->active'>";
+            echo "<input type='hidden' name='active_state' id='active-state' value='$obj->active'>";
             echo "</form>";
             echo "</div>";
         }
