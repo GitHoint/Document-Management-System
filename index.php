@@ -101,6 +101,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo '<div class="alert">' . $login_err . '</div>';
     }
     ?>
+    <a href="forgottenpwd.php"><p class="forgot-password">Forgot your password?</p></a>
+    <br>
+    <br>
     <button type="submit">Login</button>
   </form>
 </body>
