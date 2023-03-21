@@ -10,7 +10,7 @@
     <div class="forgot-pwd">
         <h1>Reset your password</h1>
         <p>An e-mail will be sent to you with instruction on how to reset your password.</p>
-        <input name="type" type="text" placeholder="Enter your e-mail address"> <br>
+        <input class="pwd-filed" name="type" type="text" placeholder="Enter your e-mail address"> <br>
         <button class="pwd-rest">Submit</button>
     </div>
 
