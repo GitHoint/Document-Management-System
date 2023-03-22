@@ -1,20 +1,3 @@
-<?php
-require_once("includes/config.php");
-
-if (!isset($_SERVER['HTTP_REFERER'])) { // redirect if the page was accessed directly
-  header("Location: search.php");
-}
-
-$postQuery = "";
-if (count($_POST) > 1) {
-  $username = $_REQUEST["username"];
-  $email = $_REQUEST["email"];
-  $department = $_REQUEST["department"];
-  $password = $_REQUEST["password"];
-  $postQuery = "INSERT INTO employee (adminId, username, email, department, password) 
-  VALUES (1, '$username', '$email', '$department', '$password');";
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,13 +6,28 @@ if (count($_POST) > 1) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thank you | Document Management</title>
-  <link rel="stylesheet" href="css/mobile.css" />
-  <link rel="stylesheet" href="css/desktop.css" media="only screen and (min-width : 720px)" />
+  <link rel="stylesheet" href="css/desktop.css" />
 </head>
 
 <body>
   <?php
   include("includes/header.php");
+  require_once("includes/config.php");
+
+  if (!isset($_SERVER['HTTP_REFERER'])) { // redirect if the page was accessed directly
+    header("Location: search.php");
+  }
+
+  $postQuery = "";
+  if (count($_POST) > 1) {
+    $adminId = $_SESSION["id"];
+    $username = $_REQUEST["username"];
+    $email = $_REQUEST["email"];
+    $department = $_REQUEST["department"];
+    $password = password_hash($_REQUEST["password"], PASSWORD_DEFAULT);
+    $postQuery = "INSERT INTO employee (adminId, username, email, department, password, active) 
+  VALUES (1, '$username', '$email', '$department', '$password', 1);";
+  }
   ?>
   <div class="page-container">
     <main>

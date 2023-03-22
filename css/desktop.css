@@ -397,8 +397,6 @@ input[type=submit]:hover {
   }
 }
 
-/* Upload page*/
-
 /* Document Page */
 .document-container{
     color: black;
@@ -419,6 +417,9 @@ button:hover, .button:hover {
 .buttons-wrap {
     display: flex;
     gap: 20px;
+}
+.edit-btn-form {
+    display: inline;
 }
 
 /* Login Page */

@@ -12,56 +12,85 @@
 <body>
   <?php
   include("includes/header.php");
+  require_once("includes/config.php");
+  $obj = null;
+  if (isset($_SESSION["ld_id"])) {
+    $docId = $_SESSION["ld_id"];
+    $stmt = $mysqli->prepare("SELECT d.*, o.username AS owner, o.department FROM document d JOIN employee o ON d.ownerId = o.id WHERE d.id = ?;");
+    $stmt->bind_param('i', $docId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows <= 0) {
+      header("Location: search.php");
+    }
+    $obj = $result->fetch_object();
+    $_SESSION["ld_id"] = null;
+  }
   ?>
 
-    
-        
+  <div class="container">
+    <center>
+      <p>
+        <?php
+        echo $obj == null ? "Upload Document" : "Edit Document";
 
-<div class="container">
-<center><p>Upload Document</p></center>
-  <form  method="post" enctype="multipart/form-data" action="uploadDocument.php">
-    <div class="row">
-      <div class="col-25">
-        <label for="Doc-name">Document Name</label>
+      ?></p>
+    </center>
+    <form method="post" enctype="multipart/form-data" action="uploadDocument.php">
+      <div class="row">
+        <div class="col-25">
+          <label for="Doc-name">Document Name</label>
+        </div>
+        <div class="col-75">
+          <!-- <input name="document_name" type="text" placeholder="Enter your document name here..."/> -->
+          <?php
+            $nameValue = $obj == null ? "" : $obj->name;
+            echo "<input value=\"{$nameValue}\" name=\"document_name\" type=\"text\" placeholder=\"Enter your document name here\"/>"
+          ?>
+        </div>
       </div>
-      <div class="col-75">
-        <input name="document_name" type="text" placeholder="Enter your document name here...">
+      <div class="row">
+        <div class="col-25">
+          <label for="Doc-type">Document Type</label>
+        </div>
+        <div class="col-75">
+        <?php
+            $typeValue = $obj == null ? "" : $obj->type;
+            echo "<input value=\"{$typeValue}\" name=\"type\" type=\"text\" placeholder=\"Document type\"/>"
+          ?>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="Doc-type">Document Type</label>
+      <div class="row">
+        <div class="col-25">
+          <label for="criticality">Criticality</label>
+        </div>
+        <div class="col-75">
+          <select name="criticality">
+            <?php
+              $critValue = $obj == null ? "" : trim($obj->criticality);
+              echo $critValue;
+              echo $critValue == "low" ? "<option value=\"low\" selected >low</option>" : "<option value=\"low\">low</option>";
+              echo $critValue == "medium" ? "<option value=\"medium\" selected >medium</option>" : "<option value=\"medium\">medium</option>";
+              echo $critValue == "high" ? "<option value=\"high\" selected >high</option>" : "<option value=\"high\">high</option>";
+            ?>
+          </select>
+        </div>
       </div>
-      <div class="col-75">
-        <input name="type" type="text" placeholder="Document type">
+      <div class="row">
+        <div class="col-25">
+          <label for="File">File</label>
+        </div>
+        <div class="col-75">
+          <input type="file" id="#" name="filename">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="criticality">Criticality</label>
+      <div class="row">
+        <input type="submit" value="Submit">
       </div>
-      <div class="col-75">
-        <select  name="criticality">
-          <option value="low">low</option>
-          <option value="medium">medium</option>
-          <option value="high">high</option>
-        </select>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="File"> File</label>
-      </div>
-      <div class="col-75">
-        <input type="file" id="#" name="filename">
-      </div>
-    </div>
-    <div class="row">
-    <input type="submit" value="Submit">
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
 
 
 </body>
+
 </html>

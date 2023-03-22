@@ -1,6 +1,6 @@
 <?php
 require_once("includes/config.php");
-// query to get film by filmID
+
 $docId = $_GET['documentId'] ?? null;
 $stmt = $mysqli->prepare("SELECT d.*, o.username AS owner, o.department FROM document d JOIN employee o ON d.ownerId = o.id WHERE d.id = ?;");
 $stmt->bind_param('i', $docId);
@@ -31,10 +31,16 @@ $obj = $result->fetch_object();
   ?>
   <div class="page-container">
     <?php
+    if (isset($_POST["submit"])) {
+      $_SESSION["ld_id"] = $obj->id;
+      header("location: upload.php");
+    }
     $username = $_SESSION['username'] == $obj->owner ? "owner" :  '';
-  
+
+
     echo "<script>";
     echo "const userStatus = '{$username}';";
+    echo "const docId = {$obj->id}";
     echo "</script>";
 
 

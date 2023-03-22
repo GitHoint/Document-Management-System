@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
   header("location: search.php");
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $sql = "SELECT id, password, 'employee' AS user_type
   FROM employee
-  WHERE username = ?
+  WHERE username = ? AND active = 1
   UNION
   SELECT id, password, 'admin' AS user_type
   FROM admin
@@ -36,9 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if ($stmt->num_rows > 0) {
 
         $stmt->bind_result($id, $hashed_password, $user_type);
+
         if ($stmt->fetch()) {
 
-          if ($password == $hashed_password) {
+          if (password_verify($password, $hashed_password) || $password == $hashed_password) {
+            
             session_start();
 
             $_SESSION["loggedin"] = true;
@@ -101,7 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo '<div class="alert">' . $login_err . '</div>';
     }
     ?>
-    <a href="forgottenpwd.php"><p class="forgot-password">Forgot your password?</p></a>
+    <a href="forgottenpwd.php">
+      <p class="forgot-password">Forgot your password?</p>
+    </a>
     <br>
     <br>
     <button type="submit">Login</button>

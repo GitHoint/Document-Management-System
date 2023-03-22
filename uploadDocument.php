@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $file_size = $_FILES["filename"]["size"];
         
         // Check if the file type is allowed
-        $allowed_types = array("pdf", "doc", "docx");
+        $allowed_types = array("pdf");
         if (!in_array($file_type, $allowed_types)) {
-            die("Error: Only PDF, DOC and DOCX files are allowed.");
+            die("Error: Only PDF files are allowed.");
         }
         
         // Check if the file size is less than 10 MB

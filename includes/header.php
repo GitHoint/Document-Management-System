@@ -1,6 +1,8 @@
 <nav>
   <?php
-  session_start();
+  if (!isset($_SESSION)){
+    session_start();
+  }
 
   $loggedin = isset($_SESSION['loggedin']) ? $_SESSION['loggedin'] : 'false';
   $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
