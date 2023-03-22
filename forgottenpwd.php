@@ -1,3 +1,7 @@
+<?php
+    require_once("includes/config.php");
+    $queryUsers = "SELECT * FROM employee WHERE active='1'";
+?>
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,9 +14,19 @@
     <div class="forgot-pwd">
         <h1>Reset your password</h1>
         <p>An e-mail will be sent to you with instruction on how to reset your password.</p>
-        <input class="pwd-filed" name="type" type="text" placeholder="Enter your e-mail address"> <br>
-        <button class="pwd-rest">Submit</button>
+        <form method="post" action="send-email.php">
+            <input type="text" name="email" class="pwd-filled">
+            <?php
+                $code = rand(1000, 9999);
+                $message = "You have requested a password reset, here is your code: ";
+                $message .= $code;
+                echo "<input type='hidden' name='subject' value='Password Reset'>";
+                echo "<input type='hidden' name='message' value='$message'>";
+                echo "<input type='hidden  name='return' value='passreg.php'>";
+                session_start();
+                $_SESSION["valid-code"] = $code;
+            ?>
+            <input type="submit" value="Submit" id="pwd-rest">
+        </form>
     </div>
-
-
 </body>

@@ -484,12 +484,14 @@ p.forgot-password:hover{
     color: blue;
 }
 
-button.pwd-rest{
+input#pwd-rest{
+    display: block;
+    margin: auto;
     border-radius: 10px;
     border: 1px solid black;    
     width: 130px;
-    margin-left: 45%;
     margin-top: 20px;
+    float: none;
 
 }
 
