@@ -14,8 +14,8 @@
   include("includes/header.php");
   require_once("includes/config.php");
   $obj = null;
-  if (isset($_SESSION["ld_id"])) {
-    $docId = $_SESSION["ld_id"];
+  if (isset($_POST["id"])) {
+    $docId = $_POST["id"];
     $stmt = $mysqli->prepare("SELECT d.*, o.username AS owner, o.department FROM document d JOIN employee o ON d.ownerId = o.id WHERE d.id = ?;");
     $stmt->bind_param('i', $docId);
     $stmt->execute();
@@ -24,7 +24,6 @@
       header("Location: search.php");
     }
     $obj = $result->fetch_object();
-    $_SESSION["ld_id"] = null;
   }
   ?>
 
@@ -84,6 +83,14 @@
           <input type="file" id="#" name="filename">
         </div>
       </div>
+      <?php
+        $editDocId = isset($_POST["id"]) ? $_POST["id"] : "null";
+        echo "<input type=\"hidden\" name=\"editDocId\" value=\"{$editDocId}\"/>";
+      ?>
+      <?php
+        $fileName = isset($_POST["id"]) ? $obj->filePath : "null";
+        echo "<input type=\"hidden\" name=\"fileName\" value=\"{$fileName}\"/>";
+      ?>
       <div class="row">
         <input type="submit" value="Submit">
       </div>
