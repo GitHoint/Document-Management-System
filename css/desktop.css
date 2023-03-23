@@ -510,11 +510,23 @@ input#pwd-rest{
     text-shadow: 3px 3px 2px rgb(210, 200, 200);
 }
 
-input.pwd-filed{
-    width: 50%;
+input.pwd-filled{
+    margin: auto;
+    display: block;
+    width: 20%;
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: vertical;
-    margin-left: 25%;
+}
+
+.status-msg{
+    display: block;
+    text-align: center;
+    width: 20%;
+    margin: auto;
+    margin-top: 10px;
+    opacity: 80%;
+    color: #15c076;
+    font-weight: 300;
+    font-size: 15px;
 }

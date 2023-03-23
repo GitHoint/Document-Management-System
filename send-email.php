@@ -1,8 +1,11 @@
 <?php
 
+    session_start();
     $email = $_POST["email"];
+    $_SESSION["email-to-reset"] = $_POST["email"];
     $message = $_POST["message"];
     $subject = $_POST["subject"];
+    $return = $_SESSION["return"];
 
     require "vendor/autoload.php";
 
@@ -31,6 +34,6 @@
 
     $mail->send();
 
-    //header location to code entry form
+    header("Location: $return");
 
 ?>
