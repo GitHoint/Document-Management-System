@@ -3,6 +3,14 @@
 require_once "includes/config.php";
 $docId = $_GET['id'];
 
+session_start();
+if (!isset($_SESSION["loggedin"])) {
+  header("location: index.php");
+}
+$employeeId = $_SESSION["id"];
+$userType = $_SESSION["user_type"];
+session_write_close();
+
 // query the database to get the document information
 // replace "your_db_table" with the actual name of your database table
 $query = "SELECT filePath FROM document WHERE id = ?";
@@ -21,4 +29,12 @@ header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename="'.basename($obj->filePath).'"');
 header('Content-Length: ' . filesize($file_path));
 readfile($file_path);
+
+// add record to document access table'
+if ($userType == "employee") {
+  $docAccessQuery = "INSERT INTO documentaccess (employeeId, documentId, action) VALUES (?, ?, 'download');";
+  $queryPrep = $mysqli->prepare($docAccessQuery);
+  $queryPrep->bind_param('ss', $employeeId, $docId);
+  $queryPrep->execute();
+}
 ?>

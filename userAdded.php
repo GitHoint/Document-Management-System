@@ -18,6 +18,7 @@
     header("Location: search.php");
   }
 
+  $adminId = $_SESSION["id"];
   $postQuery = "";
   if (count($_POST) > 1) {
     $adminId = $_SESSION["id"];
@@ -26,7 +27,9 @@
     $department = $_REQUEST["department"];
     $password = password_hash($_REQUEST["password"], PASSWORD_DEFAULT);
     $postQuery = "INSERT INTO employee (adminId, username, email, department, password, active) 
-  VALUES (1, '$username', '$email', '$department', '$password', 1);";
+    VALUES (?, ?, ?, ?, ?, 1);";
+    $queryPrep = $mysqli->prepare($postQuery);
+    $queryPrep->bind_param('sssss', $adminId, $username, $email, $department, $password);
   }
   ?>
   <div class="page-container">
@@ -34,7 +37,7 @@
       <h2>Thank you!</h2>
       <section class="centre">
         <?php
-        if (count($_POST) > 1 && mysqli_query($mysqli, $postQuery)) {
+        if (count($_POST) > 1 && $queryPrep->execute()) {
           echo "<h1>The user has been added to the database!</h1>";
         } else {
           echo "<h1>Something went wrong. Please go back and try again.</h1>";
