@@ -14,6 +14,10 @@
   require_once("includes/config.php");
   include("includes/header.php");
 
+  if (!isset($_SESSION["loggedin"])) {
+    header("location: index.php");
+  }
+
   $searchQuery = $_GET['q'] ?? null;
   $types = $_GET['types'] ?? null;
   $crit = $_GET['crit'] ?? null;

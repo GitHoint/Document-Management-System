@@ -1,6 +1,12 @@
 <?php
 
 require_once "includes/config.php";
+session_start();
+
+if (!isset($_SESSION["loggedin"])) {
+  header('location: index.php');
+}
+
 $docId = $_POST['id'];
 
 $query = "SELECT * FROM document WHERE id = ?";

@@ -2,6 +2,12 @@
 require_once "includes/config.php";
 session_start();
 
+$userType = $_SESSION["user_type"];
+$userId = $_SESSION["id"];
+
+if (!isset($_SESSION["loggedin"])) {
+    header("location: index.php");
+}
 
 function uploadFile($document_name)
 {
@@ -61,6 +67,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Execute the SQL statement
         if ($stmt->execute()) {
             echo "File uploaded successfully.";
+            if ($userType == "employee") {
+                $docAccessQuery = "INSERT INTO documentaccess (employeeId, documentId, action) VALUES (?, ?, 'edit');";
+                $queryPrep = $mysqli->prepare($docAccessQuery);
+                $queryPrep->bind_param('ss', $userId, $editDocId);
+                $queryPrep->execute();
+              }
             header("location: document.php?documentId={$editDocId}");
         } else {
             echo "Error: " . $sql . "<br>" . $mysqli->error;
@@ -74,12 +86,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $new_file_name = uploadFile($document_name);
 
-        $owenerId = $_SESSION["id"];
-
         // Prepare the SQL statement
         $sql = "INSERT INTO document (name, ownerId, type, criticality, filePath) VALUES (?, ?, ?, ?, ?)";
         $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param("sssss", $document_name, $owenerId, $type, $criticality, $new_file_name);
+        $stmt->bind_param("sssss", $document_name, $userId, $type, $criticality, $new_file_name);
 
         // Execute the SQL statement
         if ($stmt->execute()) {

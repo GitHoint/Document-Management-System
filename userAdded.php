@@ -15,7 +15,7 @@
   require_once("includes/config.php");
 
   if (!isset($_SERVER['HTTP_REFERER'])) { // redirect if the page was accessed directly
-    header("Location: search.php");
+    header("Location: index.php");
   }
 
   $adminId = $_SESSION["id"];
@@ -34,14 +34,27 @@
   ?>
   <div class="page-container">
     <main>
-      <h2>Thank you!</h2>
       <section class="centre">
         <?php
-        if (count($_POST) > 1 && $queryPrep->execute()) {
-          echo "<h1>The user has been added to the database!</h1>";
-        } else {
-          echo "<h1>Something went wrong. Please go back and try again.</h1>";
-        }
+        try {
+          if (!$queryPrep->execute()) {
+            echo "<h1>Something went wrong. Please go back and try again.</h1>";
+          } else {
+            echo "<h1>The user has been added to the database!</h1>";
+          }
+      } catch (mysqli_sql_exception $e) {
+          // Handle the duplicate key error
+          if ($e->getCode() == 1062) { // Error code for duplicate key error
+              // Display an error message to the user
+              echo "Error: Username already exists. Please choose a different username.";
+          } else {
+              // Log the error for later analysis
+              error_log("MySQL error: " . $e->getMessage());
+              // Display a generic error message to the user
+              echo "An error occurred. Please try again later.";
+          }
+      }
+      
         ?>
       </section>
     </main>

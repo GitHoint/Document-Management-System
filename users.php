@@ -1,5 +1,12 @@
 <?php
     require_once("includes/config.php");
+
+    session_start();
+    if (!(isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "admin")) {
+        header("location: index.php");
+    }
+    session_write_close();
+
     $queryUsers = "SELECT * FROM employee WHERE ";
 
     $activeOnly = false;

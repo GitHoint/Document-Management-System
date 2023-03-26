@@ -13,6 +13,11 @@
   <?php
   include("includes/header.php");
   require_once("includes/config.php");
+
+  if (!isset($_SESSION["loggedin"])) {
+    header("location: index.php");
+  }
+
   $obj = null;
   if (isset($_POST["id"])) {
     $docId = $_POST["id"];
@@ -44,7 +49,7 @@
           <!-- <input name="document_name" type="text" placeholder="Enter your document name here..."/> -->
           <?php
             $nameValue = $obj == null ? "" : $obj->name;
-            echo "<input value=\"{$nameValue}\" name=\"document_name\" type=\"text\" placeholder=\"Enter your document name here\"/>"
+            echo "<input value=\"{$nameValue}\" name=\"document_name\" type=\"text\" placeholder=\"Enter your document name here\" minlength=\"5\" maxlength=\"100\" required />"
           ?>
         </div>
       </div>
@@ -55,7 +60,7 @@
         <div class="col-75">
         <?php
             $typeValue = $obj == null ? "" : $obj->type;
-            echo "<input value=\"{$typeValue}\" name=\"type\" type=\"text\" placeholder=\"Document type\"/>"
+            echo "<input value=\"{$typeValue}\" name=\"type\" type=\"text\" placeholder=\"Document type\" minlength=\"5\" maxlength=\"50\" required />"
           ?>
         </div>
       </div>
@@ -80,7 +85,13 @@
           <label for="File">File</label>
         </div>
         <div class="col-75">
-          <input type="file" id="#" name="filename">
+          <?php
+            if (isset($_POST["id"])) {
+              echo '<input type="file" id="#" name="filename">';
+            }else {
+              echo '<input type="file" id="#" name="filename" required>';
+            }
+          ?>
         </div>
       </div>
       <?php
