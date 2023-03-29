@@ -1,10 +1,19 @@
 <?php
 
     session_start();
-    $email = $_POST["email"];
-    $_SESSION["email-to-reset"] = $_POST["email"];
-    $message = $_POST["message"];
-    $subject = $_POST["subject"];
+    if ($_POST["email"] == null)
+    {
+        $email = $_SESSION["email"];
+        $message = $_SESSION["message"];
+        $subject = $_SESSION["subject"];
+    }
+    else
+    {
+        $email = $_POST["email"];
+        $message = $_POST["message"];
+        $subject = $_POST["subject"];
+        $_SESSION["email-to-reset"] = $_POST["email"];
+    }
     $return = $_SESSION["return"];
 
     require "vendor/autoload.php";

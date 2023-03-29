@@ -47,8 +47,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["id"] = $id;
             $_SESSION["username"] = $username;
             $_SESSION["user_type"] = $user_type;
+            
+            //Email Stuff
+            $emailQuery = "SELECT email FROM employee WHERE id = '$id'";
+            $emailResult = $mysqli->query($emailQuery);
+            $row = mysqli_fetch_assoc($emailResult);
+            $_SESSION["email"] = $row["email"];
+            $code = rand(100000, 999999);
+            $_SESSION["code"] = $code;
+            $_SESSION["message"] = "There has been attempted access to your account, use this code to login: $code. If you didn't attempt to login, report this activity to you administrator";
+            $_SESSION["subject"] = "Two Factor Authentication";
+            $_SESSION["return"] = "2fa.php";
 
-            header("location: search.php");
+            header("location: send-email.php");
           } else {
             $login_err = "Invalid username or password.";
           }
