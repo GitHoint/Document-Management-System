@@ -13,7 +13,7 @@ $employeeId = $_SESSION["id"];
 session_write_close();
 
 $stmt = $mysqli->prepare("SELECT d.*, o.username AS owner, o.department FROM document d JOIN employee o ON d.ownerId = o.id WHERE d.id = ?;");
-$stmt->bind_param('i', $docId);
+$stmt->bind_param('s', $docId);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -42,6 +42,36 @@ if ($userType == "employee" && $employeeId != $obj->ownerId) {
     <?php echo $obj->name ?> | Document Management
   </title>
   <link rel="stylesheet" href="css/desktop.css" />
+  <link rel="stylesheet" href="pdfjs/web/viewer.css">
+  <script src="pdfjs/build/pdf.js"></script>
+  <script>
+
+    const pdfUrl = '<?php echo "documents/" . $obj->filePath ?>';
+
+    pdfjsLib.getDocument(pdfUrl).promise.then(function (pdfDoc) {
+      pdfDoc.getPage(1).then(function (page) {
+        const scale = 0.6;
+
+        const viewport = page.getViewport({ scale: scale });
+
+        const canvas = document.createElement('canvas');
+        canvas.id = 'pdfCanvas';
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        const pdfViewer = document.getElementById('pdfViewer');
+        pdfViewer.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+        page.render(renderContext);
+      });
+    });
+    
+  </script>
 </head>
 
 <body>
@@ -61,6 +91,7 @@ if ($userType == "employee" && $employeeId != $obj->ownerId) {
       <div>
         <?php
         echo "<div class=\"document-container\">";
+        echo '<div id="pdfViewer"></div>';
         echo "<span class=\"document-card-name\">{$obj->name}</span>";
         echo "<ul class=\"document-card-details\">";
         echo "<li>Type: {$obj->type}</li>";

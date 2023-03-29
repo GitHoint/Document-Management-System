@@ -4,6 +4,7 @@
     { name: "Upload", link: "upload.php" },
     { name: "Users", link: "users.php" },
     { name: "Add User", link: "addUser.php" },
+    { name: "Report", link: "report.php"}
   ];
   const loginLink = {
     name: "Login",

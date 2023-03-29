@@ -14,7 +14,7 @@
   include("includes/header.php");
   require_once("includes/config.php");
 
-  if (!isset($_SERVER['HTTP_REFERER'])) { // redirect if the page was accessed directly
+  if (!isset($_SERVER['HTTP_REFERER']) || !isset($_SESSION["loggedin"])) { // redirect if the page was accessed directly
     header("Location: index.php");
   }
 
