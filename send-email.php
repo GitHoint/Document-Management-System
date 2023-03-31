@@ -27,6 +27,7 @@
 
     $mail->isSMTP();
     $mail->SMTPAuth = true;
+    $mail->isHTML(true);
 
     $mail->Host = "smtp.gmail.com";
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;

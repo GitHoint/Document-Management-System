@@ -17,6 +17,9 @@
     <title>Register New Password | Document Manager</title>
 </head>
 <body>
+<header class="blank-header" style="
+    height: 67px;
+    background-color: #128754;"></header>
     <div class="forgot-pwd">
         <h1>Reset your password</h1>
         <p>An e-mail has been sent to <?php echo (substr($email, 0,5) . "****" . substr($email, -4)) ?>, enter the code you have recieved below.</p>

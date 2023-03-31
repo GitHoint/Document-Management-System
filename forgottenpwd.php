@@ -13,6 +13,9 @@
 </head>
 
 <body>
+<header class="blank-header" style="
+    height: 67px;
+    background-color: #128754;"></header>
     <div class="forgot-pwd">
         <h1>Reset your password</h1>
         <p>An e-mail will be sent to you with instruction on how to reset your password. Enter the email your account is tied to.</p>
@@ -21,8 +24,7 @@
             <?php
                 error_reporting(0);
                 $code = rand(1000, 9999);
-                $message = "You have requested a password reset, here is your code: ";
-                $message .= $code;
+                $message = "<h2>Password Reset Requested</h2> <h3>A password reset was requested, use the following code to proceed: $code</h3> <p>If you did not request this change, ignore this message and inform your system administrator.</p>";
                 echo "<input type='hidden' name='subject' value='Password Reset'>";
                 echo "<input type='hidden' name='message' value='$message'>";
                 session_start();
