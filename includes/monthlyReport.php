@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <?php
-    while ($obj = $stmt->fetch_object()) {
+    while ($obj = $result->fetch_object()) {
       echo "<tr class=\"tableRowReport\" onclick=\"window.location.href = '/document-management/document.php?documentId={$obj->id}';\" >";
       echo "<td class=\"docName\">{$obj->name}</td>";
       echo "<td class=\"docType\">{$obj->type}</td>";
