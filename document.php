@@ -28,6 +28,28 @@ if ($userType == "employee" && $employeeId != $obj->ownerId) {
   $queryPrep = $mysqli->prepare($docAccessQuery);
   $queryPrep->bind_param('ss', $employeeId, $docId);
   $queryPrep->execute();
+
+  //Sending Email
+  require_once("includes/email-function.php");
+  $adminQuery = "SELECT email FROM admin";
+  $adminResult = $mysqli->query($adminQuery);
+  $row = mysqli_fetch_assoc($adminResult);
+  $username = $_SESSION["username"];
+  $email = $row['email'];
+  $subject= "Document Access";
+  $message = "<h2>A document has been accessed.</h2>
+              <h3>Here are the details:</h3>
+              <br>
+              <p>Document Name: $obj->name</p> 
+              <p>Criticality: $obj->criticality</p>
+              <p>Owner: $obj->department, $obj->owner</p>
+              <p>Uploaded On: $obj->uploadDate</p>
+              <br>
+              <p>Accessed By: $username</p>
+              <p>Access Date: " . date('Y/m/d') . "</p>
+              <p>Access Time: " . date('H:i') . "</p>";
+  DocEmail($email, $subject, $message);
+
 }
 
 ?>

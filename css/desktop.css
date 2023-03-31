@@ -666,6 +666,14 @@ input.pwd-filled {
     font-size: 15px;
 }
 
+#two-factor {
+    width: 10%;
+    display: block;
+    margin: 10px auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 /* montly report */
 
 .report-title {

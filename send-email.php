@@ -1,5 +1,5 @@
 <?php
-
+    //Used for 2fa & password reset emails
     session_start();
     if ($_POST["email"] == null)
     {
