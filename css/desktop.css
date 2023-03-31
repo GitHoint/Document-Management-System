@@ -355,12 +355,6 @@ input[type="checkbox"] {
     margin-left: 6px;
 }
 
-select {
-    margin-top: 6px;
-    border: 1px solid black;
-    font-size: 16px;
-}
-
 /* add user page */
 .register-form {
     display: flex;
@@ -420,6 +414,13 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
+}
+
+select {
+    margin-top: 6px;
+    border: 1px solid black;
+    font-size: 16px;
+    padding: 5px;
 }
 
 label {
@@ -674,4 +675,13 @@ input.pwd-filled {
 }
 .tableRowReport {
     cursor: pointer;
+}
+.report-date {
+    /* width: 200px; */
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+.report-date > select {
+    width: 200px;
 }
