@@ -26,10 +26,11 @@
                     $confpass = $_POST["conf-pass"];
                     if ($newpass == $confpass)
                     {
+                        $hashedPass = password_hash($newpass, PASSWORD_DEFAULT);
                         session_start();
                         $id = $_SESSION["id"];
                         require_once("includes/config.php");
-                        $query = "UPDATE employee SET password = '$newpass' WHERE id = '$id'";
+                        $query = "UPDATE employee SET password = '$hashedPass' WHERE id = '$id'";
                         $mysqli->query($query);
                         header("Location: index.php");
                     }
