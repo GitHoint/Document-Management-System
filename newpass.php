@@ -10,9 +10,9 @@
     <title>Enter New Password</title>
 </head>
 <body>
-<header class="blank-header" style="
-    height: 67px;
-    background-color: #128754;"></header>
+    <?php
+        include("includes/header.php");
+    ?>
     <div class="forgot-pwd">
         <h1>Reset your password</h1>
         <form method="post" action="" autocomplete="off">

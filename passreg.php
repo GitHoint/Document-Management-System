@@ -17,9 +17,9 @@
     <title>Register New Password | Document Manager</title>
 </head>
 <body>
-<header class="blank-header" style="
-    height: 67px;
-    background-color: #128754;"></header>
+    <?php
+        include("includes/header.php");
+    ?>
     <div class="forgot-pwd">
         <h1>Reset your password</h1>
         <p>An e-mail has been sent to <?php echo (substr($email, 0,5) . "****" . substr($email, -4)) ?>, enter the code you have recieved below.</p>
@@ -53,7 +53,10 @@
             }
             else
             {
-                echo "<h2 class='status-msg'>Invalid Code</h2>";
+                if (isset($_POST["inp-code"]))
+                {
+                    echo "<h2 class='status-msg'>Invalid Code</h2>";
+                }
             }
         ?>
     </div>

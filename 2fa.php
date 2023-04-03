@@ -11,10 +11,8 @@
     <?php
         session_start();
         $email = $_SESSION["email"];
+        include("includes/header.php");
     ?>
-    <header class="blank-header" style="
-    height: 67px;
-    background-color: #128754;"></header>
     <div class="code">
         <form action="" method="post" id="login-form">
             <h2>Two Factor Authentication</h2>
@@ -26,6 +24,7 @@
                 $code = $_SESSION["code"];
                 if ($code == $_POST["vericode"])
                 {
+                    $_SESSION["loggedin"] = true;
                     header("Location: search.php");
                 }
                 else

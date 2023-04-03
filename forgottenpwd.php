@@ -13,9 +13,9 @@
 </head>
 
 <body>
-<header class="blank-header" style="
-    height: 67px;
-    background-color: #128754;"></header>
+    <?php
+        include("includes/header.php");
+    ?>
     <div class="forgot-pwd">
         <h1>Reset your password</h1>
         <p>An e-mail will be sent to you with instruction on how to reset your password. Enter the email your account is tied to.</p>

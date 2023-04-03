@@ -43,13 +43,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             session_start();
 
-            $_SESSION["loggedin"] = true;
             $_SESSION["id"] = $id;
             $_SESSION["username"] = $username;
             $_SESSION["user_type"] = $user_type;
             
             //Email Stuff
-            $emailQuery = "SELECT email FROM employee WHERE id = '$id'";
+            if ($user_type == "admin")
+            {
+              $emailQuery = "SELECT email FROM admin WHERE id = '$id'";
+            }
+            else
+            {
+              $emailQuery = "SELECT email FROM employee WHERE id = '$id'";
+            }
             $emailResult = $mysqli->query($emailQuery);
             $row = mysqli_fetch_assoc($emailResult);
             $_SESSION["email"] = $row["email"];
