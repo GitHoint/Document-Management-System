@@ -1,5 +1,5 @@
 <?php
-
+    //Used for 2fa & password reset emails
     session_start();
     if ($_POST["email"] == null)
     {
@@ -27,6 +27,7 @@
 
     $mail->isSMTP();
     $mail->SMTPAuth = true;
+    $mail->isHTML(true);
 
     $mail->Host = "smtp.gmail.com";
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;

@@ -20,7 +20,7 @@
             <h2>Two Factor Authentication</h2>
             <p>An email has been sent to <?php echo (substr($email, 0,5) . "****" . substr($email, -4)) ?> </p>
             <p>Enter the 6-Digit Code Below</p>
-            <input type="text" placeholder="000 000" name="vericode" required>
+            <input type="text" placeholder="000 000" name="vericode" id="two-factor" required>
             <?php
                 error_reporting(0);
                 $code = $_SESSION["code"];

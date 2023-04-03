@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["email"] = $row["email"];
             $code = rand(100000, 999999);
             $_SESSION["code"] = $code;
-            $_SESSION["message"] = "There has been attempted access to your account, use this code to login: $code. If you didn't attempt to login, report this activity to you administrator";
+            $_SESSION["message"] = "<h2>There has been attempted access to your account.</h2> <br> <h3>use this code to login: $code</h3> <br> <p>If you didn't attempt to login, ignore this message and report this activity to you administrator.</p>";
             $_SESSION["subject"] = "Two Factor Authentication";
             $_SESSION["return"] = "2fa.php";
 
