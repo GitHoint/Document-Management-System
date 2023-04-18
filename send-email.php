@@ -34,7 +34,7 @@
     $mail->Port = 587;
 
     $mail->Username = "system.kwh@gmail.com";
-    $mail->Password = "vgnkobejfgmsrnnn";
+    $mail->Password = "ikqqggbvcqyvkimw";
 
     $mail->setFrom("system@kwh.com", "System Notification :: Kuwait Finance House");
     $mail->addAddress($email);

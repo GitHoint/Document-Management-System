@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2023 at 02:50 PM
+-- Generation Time: Apr 18, 2023 at 08:14 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
-(1, 'testadmin', 'testadmin@kwh.com', 'testpassword');
+(1, 'testadmin', 'system.kwh@gmail.com', 'testpassword');
 
 -- --------------------------------------------------------
 
@@ -125,11 +125,12 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `adminId`, `username`, `email`, `password`, `department`, `active`) VALUES
-(1, 1, 'testemployee', 'testemployee@kwh.com', 'testpassword', 'Test Department', 1),
-(2, 1, 'test1', 'test1@gmail.com', 'test1', 'First Department', 1),
+(1, 1, 'testemployee', 'system.kwh@gmail.com', 'testpassword', 'Test Department', 1),
+(2, 1, 'test1', 'test1@gmail.com', 'test1', 'First Department', 0),
 (3, 1, 'test2', 'test2@gmail.com', 'test2test2', 'new department', 0),
-(5, 1, 'test3', 'test3@gmail.com', '$2y$10$s5s9A02O59iSP4QkjoB.u.BoX/.cd4LsCgCuIjukzXw.XlPXh3OvC', 'tes3dep', 1),
-(6, 1, 'test4', 'test4@gmail.com', '$2y$10$uznVLa659yz4O.BkQ0gOHOkt8lFSP1xphfn25rjCfqiTK160nUDba', 'tes4dep', 1);
+(5, 1, 'test3', 'test3@gmail.com', '$2y$10$s5s9A02O59iSP4QkjoB.u.BoX/.cd4LsCgCuIjukzXw.XlPXh3OvC', 'tes3dep', 0),
+(6, 1, 'test4', 'test4@gmail.com', '$2y$10$uznVLa659yz4O.BkQ0gOHOkt8lFSP1xphfn25rjCfqiTK160nUDba', 'tes4dep', 0),
+(10, 1, 'Farshad', 'Farshad389@gmail.com', '$2y$10$HwoZULvXrRNrind7L32cTevGKW6FpF4.WkrD7CadYIJMpH7t/whqC', 'Developer', 1);
 
 --
 -- Indexes for dumped tables
@@ -189,7 +190,7 @@ ALTER TABLE `documentaccess`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
